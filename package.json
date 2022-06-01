@@ -1,0 +1,28 @@
+{
+	"name": "maplerad-node",
+	"version": "0.0.1",
+	"description": "Official Nodejs library for the Maplerad API",
+	"prepublish": "tsc",
+	"scripts": {
+		"build": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wirepay/maplerad-node.git"
+	},
+	"homepage": "https://github.com/wirepay/maplerad-node",
+	"keywords": [
+		"sdk",
+		"library",
+		"fintech"
+	],
+	"author": "Christian Ndu",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^0.27.2"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.38",
+		"typescript": "^4.7.2"
+	}
+}
