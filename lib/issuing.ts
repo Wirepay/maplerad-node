@@ -1,11 +1,11 @@
-import {AxiosInstance} from "axios";
+import { AxiosInstance, AxiosResponse} from "axios";
+import {CurrencyType} from "../utils";
 
 const path = "/issuing"
 
 type CardType = "physical" | "virtual"
-type CurrencyType = "NGN" | "USD"
 
-interface cardPayload{
+interface CardPayload{
     customer_id :string
     type: CardType
     currency: CurrencyType
@@ -19,7 +19,7 @@ export default class Issuing {
     }
 
 
-    public async createCard(payload:cardPayload){
+    public async CreateCard(payload:CardPayload): Promise<AxiosResponse | any>{
         try{
             const response = await this.axios.post(`${path}`,payload)
             return response.data
@@ -28,7 +28,7 @@ export default class Issuing {
         }
     }
 
-    public  async getCard(cardID: string){
+    public  async GetCard(cardID: string): Promise<AxiosResponse | any>{
         try{
             const response = await this.axios.get(`${path}/${cardID}`)
             return response.data
@@ -37,7 +37,7 @@ export default class Issuing {
         }
     }
 
-    public  async getAllCards(){
+    public  async GetAllCards():Promise<AxiosResponse | any>{
         try{
             const response = await this.axios.get(`${path}`)
             return response.data
@@ -46,7 +46,7 @@ export default class Issuing {
         }
     }
 
-    public  async getCardTransactions(cardID: string){
+    public  async GetCardTransactions(cardID: string){
         try{
             const response = await this.axios.get("")
         }catch (error) {
@@ -54,36 +54,40 @@ export default class Issuing {
         }
     }
 
-    public async fundCard(cardID :string){
+    public async FundCard(cardID :string, amount: number):Promise<AxiosResponse | any>{
         try{
-            const response = await this.axios.get(`${path}/${cardID}/fund`)
+            const response = await this.axios.post(`${path}/${cardID}/fund`, {
+                amount
+            })
             return response.data
         }catch (error) {
             return error
         }
     }
 
-    public async withdrawFromCard(cardID:string){
+    public async WithdrawFromCard(cardID:string, amount:number): Promise<AxiosResponse | any>{
         try{
-            const response = await this.axios.get(`${path}/${cardID}/withdraw`)
+            const response = await this.axios.post(`${path}/${cardID}/withdraw`, {
+                amount
+            })
+            return response.data
+        }catch (error){
+            return error
+        }
+    }
+
+    public async EnableCard(cardID :string): Promise<AxiosResponse | any>{
+        try{
+            const response = await this.axios.patch(`${path}/${cardID}/enable`)
             return response.data
         }catch (error) {
             return error
         }
     }
 
-    public async enableCard(id :string){
+    public async DisableCard(cardID :string):Promise<AxiosResponse | any>{
         try{
-            const response = await this.axios.patch(`${path}/${id}/enable`)
-            return response.data
-        }catch (error) {
-            return error
-        }
-    }
-
-    public async disableCard(id :string){
-        try{
-            const response = await this.axios.patch(`${path}/${id}/disable`)
+            const response = await this.axios.patch(`${path}/${cardID}/disable`)
             return response.data
         }catch (error) {
             return error
