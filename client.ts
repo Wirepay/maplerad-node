@@ -3,6 +3,10 @@ import Issuing from "./lib/issuing";
 import Transfer from "./lib/transfer";
 import Bills from "./lib/bills";
 import Fx from "./lib/fx";
+import Misc from "./lib/misc";
+import Collections from "./lib/collections";
+import Customer from "./lib/customer";
+import Institution from "./lib/institution";
 
 type Env = "live" | "sandbox"
 
@@ -12,6 +16,10 @@ export default class Maplerad {
     public Transfer: Transfer;
     public Bills: Bills;
     public Fx: Fx;
+    public Misc: Misc;
+    public Collections: Collections
+    public Customer:Customer
+    public Institution: Institution
 
 
     // key can be gotten from your Maplerad dashboard
@@ -40,7 +48,10 @@ export default class Maplerad {
         this.Transfer = new Transfer(axios)
         this.Bills = new Bills(axios)
         this.Fx = new Fx(axios)
-
+        this.Misc = new Misc(axios)
+        this.Collections = new Collections(axios)
+        this.Customer = new Customer(axios)
+        this.Institution = new Institution(axios)
     }
 }
 
@@ -49,3 +60,6 @@ const client = new Maplerad("", "live")
 // client.Issuing.createCard()
 // client.Transfer.CashPickupTransfer()
 // client.Bills.BuyAirtime()
+// client.Fx.ExchangeCurrency()
+// client.Misc.GetCurrencies()
+// client.Collections.CreateVirtualAccount()
