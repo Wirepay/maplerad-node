@@ -10,7 +10,7 @@
 
 ```js
    // import the package
-    const Maplerad = require("maplerad-node") // common-js
+    const Maplerad = require("maplerad-node") // commonjs
     // or
     import Maplerad from "maplerad-node" // esm
 
@@ -25,5 +25,6 @@
 # Customer
 
 ```js
-
+    // Create a customer
+    client.Customer.CreateCustomer()
 ```

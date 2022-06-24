@@ -1,4 +1,10 @@
-import {AxiosInstance} from "axios";
+import {AxiosInstance, AxiosResponse} from "axios";
+import {CurrencyType} from "../utils";
+
+interface TestWalletPayload {
+    amount: string
+    currency: CurrencyType
+}
 
 export default class Misc {
     private axios: AxiosInstance;
@@ -7,7 +13,7 @@ export default class Misc {
         this.axios = axios
     }
 
-    public async GetCurrencies(){
+    public async GetCurrencies():Promise<AxiosResponse | any>{
         try{
             const response = await this.axios.get("/currencies")
             return response.data
@@ -15,6 +21,12 @@ export default class Misc {
             return error
         }
     }
-
-
+    public async CreditTestWallet(payload:TestWalletPayload): Promise<AxiosResponse | any>{
+        try{
+            const response = await this.axios.get("/test/wallet/credit")
+            return response.data
+        }catch (error){
+            return error
+        }
+    }
 }

@@ -1,33 +1,39 @@
 import Axios from "axios";
 import Issuing from "./lib/issuing";
-import Transfer from "./lib/transfer";
+import Transfers from "./lib/transfer";
 import Bills from "./lib/bills";
 import Fx from "./lib/fx";
 import Misc from "./lib/misc";
 import Collections from "./lib/collections";
-import Customer from "./lib/customer";
+import Customers from "./lib/customers";
 import Institution from "./lib/institution";
+import Settlement from "./lib/settlements";
+import Counterparty from "./lib/counterparty";
+import Wallets from "./lib/wallets";
 
 type Env = "live" | "sandbox"
 
 export default class Maplerad {
     private readonly secretKey: string;
     public Issuing: Issuing;
-    public Transfer: Transfer;
+    public Transfers: Transfers;
     public Bills: Bills;
     public Fx: Fx;
     public Misc: Misc;
     public Collections: Collections
-    public Customer:Customer
+    public Customers: Customers
     public Institution: Institution
+    public Settlements: Settlement
+    public Counterparty: Counterparty
+    public Wallets: Wallets
 
 
-    // key can be gotten from your Maplerad dashboard
-    // environment can only be "live" or "sandbox"
+    // key can be gotten from your Maplerad dashboard.
+    // environment can only be "live" or "sandbox".
     constructor(key:string, environment: Env) {
         this.secretKey = key
         const axios = Axios.create({
-            baseURL : environment === "live" ? "https://api.maplerad.com/v1" : "https://api.sandbox.maplerad.com/v1" ,
+            baseURL : environment.toLowerCase() === "live" ? "https://api.maplerad.com/v1" : "https://api.sb.maplerad.com/v1" ,
             headers: {
                 Authorization: `Bearer ${(this.secretKey)}`,
                 'Content-Type': 'application/json'
@@ -45,13 +51,17 @@ export default class Maplerad {
         })
 
         this.Issuing = new Issuing(axios)
-        this.Transfer = new Transfer(axios)
+        this.Transfers = new Transfers(axios)
         this.Bills = new Bills(axios)
         this.Fx = new Fx(axios)
         this.Misc = new Misc(axios)
         this.Collections = new Collections(axios)
-        this.Customer = new Customer(axios)
+        this.Customers = new Customers(axios)
         this.Institution = new Institution(axios)
+        this.Settlements = new Settlement(axios)
+        this.Counterparty = new Counterparty(axios)
+        this.Wallets = new Wallets(axios)
+
     }
 }
 
@@ -63,4 +73,8 @@ const client = new Maplerad("", "live")
 // client.Fx.ExchangeCurrency()
 // client.Misc.GetCurrencies()
 // client.Collections.CreateVirtualAccount()
-// client.Customer.GetAllCustomers()
+// client.Customer.GetAllCustomers().then(data => console.log(data)).catch()
+// client.Institution.GetAllInstitutions()
+// client.Settlements.GetSettlements()
+// client.Counterparty.GetAllCounterparties()
+// client.Wallets.GetWalletByCurrency()

@@ -27,7 +27,7 @@ interface CreateCustomerPayload {
     phone_number:string
 }
 
-export default class Customer {
+export default class Customers {
     private axios: AxiosInstance;
 
     constructor(axios: AxiosInstance) {

@@ -25,7 +25,7 @@ interface NairaTransferPayload {
     account_number: string
     amount:number
     bank_code: string
-    currency: string | "NGN"
+    currency: "NGN"
 }
 interface TransferPayload{
     account_number: string
@@ -37,7 +37,7 @@ interface TransferPayload{
     reference: string
 }
 
-export default class Transfer {
+export default class Transfers {
     private axios: AxiosInstance;
     constructor(axios:AxiosInstance) {
         this.axios = axios
