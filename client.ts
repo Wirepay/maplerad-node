@@ -7,7 +7,6 @@ import Misc from "./lib/misc";
 import Collections from "./lib/collections";
 import Customers from "./lib/customers";
 import Institution from "./lib/institution";
-import Settlement from "./lib/settlements";
 import Counterparty from "./lib/counterparty";
 import Wallets from "./lib/wallets";
 
@@ -23,7 +22,6 @@ export default class Maplerad {
     public Collections: Collections
     public Customers: Customers
     public Institution: Institution
-    public Settlements: Settlement
     public Counterparty: Counterparty
     public Wallets: Wallets
 
@@ -58,7 +56,6 @@ export default class Maplerad {
         this.Collections = new Collections(axios)
         this.Customers = new Customers(axios)
         this.Institution = new Institution(axios)
-        this.Settlements = new Settlement(axios)
         this.Counterparty = new Counterparty(axios)
         this.Wallets = new Wallets(axios)
 
@@ -75,6 +72,5 @@ const client = new Maplerad("", "live")
 // client.Collections.CreateVirtualAccount()
 // client.Customer.GetAllCustomers().then(data => console.log(data)).catch()
 // client.Institution.GetAllInstitutions()
-// client.Settlements.GetSettlements()
 // client.Counterparty.GetAllCounterparties()
 // client.Wallets.GetWalletByCurrency()
