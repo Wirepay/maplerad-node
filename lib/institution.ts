@@ -1,4 +1,5 @@
-import {AxiosInstance, AxiosResponse} from "axios";
+import axios, {AxiosInstance, AxiosResponse} from "axios";
+
 
 const path = "/institutions"
 
@@ -9,8 +10,8 @@ interface InstitutionsParams{
     country?: string
 }
 interface ResolveInstitutionPayload{
-    accountNumber: string
-    bankCode: string
+    account_number: string
+    bank_code: string
 }
 
 export default class Institution {
@@ -35,10 +36,12 @@ export default class Institution {
     }
     public async ResolveInstitution(payload: ResolveInstitutionPayload):Promise<AxiosResponse | any>{
         try{
-            const response = await this.axios.post(`${path}/resolve`, payload)
+            const response = await this.axios.post(`${path}/resolve`, {
+                payload
+            })
             return response.data
-        }catch (error){
-            return error
+        }catch (error: any){
+            return error.data
         }
     }
 }

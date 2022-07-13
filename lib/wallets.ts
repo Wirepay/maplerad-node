@@ -1,5 +1,4 @@
 import {AxiosInstance, AxiosResponse} from "axios";
-import {CurrencyType} from "../utils";
 
 const path = "wallets"
 
@@ -14,11 +13,12 @@ export default class Wallets {
         try{
             const response = await this.axios.get(path)
             return response.data
+
         }catch (error){
             return error
         }
     }
-    public async GetWalletByCurrency(currencyCode: CurrencyType):Promise<AxiosResponse | any>{
+    public async GetWalletByCurrency(currencyCode: string):Promise<AxiosResponse | any>{
         try{
             const response = await this.axios.get(`${path}/${currencyCode}`)
             return response.data
@@ -34,7 +34,7 @@ export default class Wallets {
             return error
         }
     }
-    public async GetWalletsHistoryByCurrency(currencyCode: CurrencyType):Promise<AxiosResponse | any>{
+    public async GetWalletsHistoryByCurrency(currencyCode: string):Promise<AxiosResponse | any>{
         try{
             const response = await this.axios.get(`${path}/${currencyCode}/history`)
             return response.data

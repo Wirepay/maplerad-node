@@ -4,7 +4,8 @@
 	"description": "Official Nodejs library for the Maplerad API",
 	"prepublish": "tsc",
 	"scripts": {
-		"build": "tsc"
+		"build": "npx tsc",
+		"dev": "ts-node client.ts"
 	},
 	"repository": {
 		"type": "git",
@@ -24,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.38",
+		"ts-node": "^10.8.2",
 		"typescript": "^4.7.2"
 	}
 }
