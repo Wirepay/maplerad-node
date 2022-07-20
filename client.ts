@@ -32,8 +32,10 @@ export default class Maplerad {
     // environment can only be "live" or "sandbox".
     constructor(key:string, environment: Env) {
         this.secretKey = key
+        const live = "https://api.maplerad.com/v1"
+        const sandbox = "https://sandbox.api.maplerad.com/v1"
         const axios = Axios.create({
-            baseURL : environment.toLowerCase() === "live" ? "https://api.maplerad.com/v1" : "https://sandbox.api.maplerad.com/v1" ,
+            baseURL : environment.toLowerCase() === "live" ? live : sandbox ,
             headers: {
                 Authorization: `Bearer ${(this.secretKey)}`,
                 'Content-Type': 'application/json'
