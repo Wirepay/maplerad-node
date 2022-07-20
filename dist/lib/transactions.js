@@ -9,20 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = "/institutions";
-class Institution {
+const path = "transactions";
+class Transactions {
     constructor(axios) {
         this.axios = axios;
     }
-    GetAllInstitutions({ page, pageSize, country, type }) {
+    GetAllTransactions() {
         return __awaiter(this, void 0, void 0, function* () {
-            let query = "?";
-            query += page ? `${page}&` : "";
-            query += pageSize ? `${pageSize}&` : "";
-            query += country ? `${country}&` : "";
-            query += type ? `${type}&` : "";
             try {
-                const response = yield this.axios.get(path + query);
+                const response = yield this.axios.get(path);
                 return response.data;
             }
             catch (error) {
@@ -30,18 +25,29 @@ class Institution {
             }
         });
     }
-    ResolveInstitution(payload) {
+    // The transaction ID or Reference is the parameter for this method
+    GetTransaction(transactionId) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.post(`${path}/resolve`, {
-                    payload
-                });
+                const response = yield this.axios.get(`${path}/${transactionId}`);
                 return response.data;
             }
             catch (error) {
-                return error.data;
+                return error;
+            }
+        });
+    }
+    // The transaction ID or Reference is the parameter for this method
+    VerifyCollectionTransaction(transactionId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.get(`${path}/verify/${transactionId}`);
+                return response.data;
+            }
+            catch (error) {
+                return error;
             }
         });
     }
 }
-exports.default = Institution;
+exports.default = Transactions;
