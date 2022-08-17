@@ -1,4 +1,5 @@
 import {AxiosInstance, AxiosResponse} from "axios";
+import {CountryType} from "../utils";
 
 const path = "/customers"
 
@@ -18,13 +19,21 @@ interface _Identity{
 }
 
 interface CreateCustomerPayload {
-    address : IAddress
-    dob:string
     email:string
-    identity: _Identity
     first_name:string
     last_name:string
+    country: CountryType
+}
+interface TierOnePayload {
+    customer_id:string
     phone_number:string
+    address : IAddress
+    dob:string
+    identification_number: string
+}
+interface TierTwoPayload {
+    customer_id:string
+    identity: _Identity
 }
 
 export default class Customers {
@@ -37,6 +46,22 @@ export default class Customers {
     public async CreateCustomer(payload: CreateCustomerPayload): Promise<AxiosResponse | any>{
         try{
             const response = await this.axios.post(`${path}`)
+            return response.data
+        }catch (error){
+            return error
+        }
+    }
+    public async UpgradeCustomerTier1(payload: TierOnePayload): Promise<AxiosResponse | any>{
+        try{
+            const response = await this.axios.patch(`${path}/upgrade/tier1`)
+            return response.data
+        }catch (error){
+            return error
+        }
+    }
+    public async UpgradeCustomerTier2(payload: TierTwoPayload): Promise<AxiosResponse | any>{
+        try{
+            const response = await this.axios.patch(`${path}/upgrade/tier2`)
             return response.data
         }catch (error){
             return error
