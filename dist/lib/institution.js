@@ -14,15 +14,10 @@ class Institution {
     constructor(axios) {
         this.axios = axios;
     }
-    GetAllInstitutions({ page, pageSize, country, type }) {
+    GetAllInstitutions(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            let query = "?";
-            query += page ? `${page}&` : "";
-            query += pageSize ? `${pageSize}&` : "";
-            query += country ? `${country}&` : "";
-            query += type ? `${type}&` : "";
             try {
-                const response = yield this.axios.get(path + query);
+                const response = yield this.axios.get(path, { params: params });
                 return response.data;
             }
             catch (error) {
@@ -34,7 +29,7 @@ class Institution {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axios.post(`${path}/resolve`, {
-                    payload
+                    payload,
                 });
                 return response.data;
             }

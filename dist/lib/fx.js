@@ -29,8 +29,19 @@ class Fx {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axios.post(path, {
-                    quote_reference
+                    quote_reference,
                 });
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    GetFXHistory() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.get(path);
                 return response.data;
             }
             catch (error) {

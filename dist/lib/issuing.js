@@ -25,6 +25,30 @@ class Issuing {
             }
         });
     }
+    CreateBusinessCard(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.post(`${path}/business`, payload);
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    SetCardPin(cardID, pin) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.patch(`${path}/${cardID}/set-pin`, {
+                    card_pin: pin,
+                });
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
     GetCard(cardID) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -32,7 +56,7 @@ class Issuing {
                 return response.data;
             }
             catch (error) {
-                return error;
+                return;
             }
         });
     }
@@ -47,10 +71,11 @@ class Issuing {
             }
         });
     }
-    GetCardTransactions(cardID) {
+    GetCardTransactions(cardID, params) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.get("");
+                const response = yield this.axios.get(`${path}/${cardID}/transactions`, { params: params });
+                return response.data;
             }
             catch (error) {
                 return error;
@@ -61,7 +86,7 @@ class Issuing {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axios.post(`${path}/${cardID}/fund`, {
-                    amount
+                    amount,
                 });
                 return response.data;
             }
@@ -74,7 +99,7 @@ class Issuing {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axios.post(`${path}/${cardID}/withdraw`, {
-                    amount
+                    amount,
                 });
                 return response.data;
             }
@@ -83,10 +108,10 @@ class Issuing {
             }
         });
     }
-    EnableCard(cardID) {
+    FreezeCard(cardID) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.patch(`${path}/${cardID}/enable`);
+                const response = yield this.axios.patch(`${path}/${cardID}/freeze`);
                 return response.data;
             }
             catch (error) {
@@ -94,10 +119,10 @@ class Issuing {
             }
         });
     }
-    DisableCard(cardID) {
+    UnFreezeCard(cardID) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.patch(`${path}/${cardID}/disable`);
+                const response = yield this.axios.patch(`${path}/${cardID}/unfreeze`);
                 return response.data;
             }
             catch (error) {

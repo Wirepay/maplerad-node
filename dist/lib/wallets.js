@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = "wallets";
+const path = "/wallets";
 class Wallets {
     constructor(axios) {
         this.axios = axios;
@@ -25,10 +25,12 @@ class Wallets {
             }
         });
     }
-    GetWalletByCurrency(currencyCode) {
+    GetWalletsHistory(params) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.get(`${path}/${currencyCode}`);
+                const response = yield this.axios.get(`${path}/history`, {
+                    params,
+                });
                 return response.data;
             }
             catch (error) {
@@ -36,21 +38,10 @@ class Wallets {
             }
         });
     }
-    GetWalletsHistory() {
+    GetWalletsHistoryByCurrency(currencyCode, params) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.get(`${path}/history`);
-                return response.data;
-            }
-            catch (error) {
-                return error;
-            }
-        });
-    }
-    GetWalletsHistoryByCurrency(currencyCode) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield this.axios.get(`${path}/${currencyCode}/history`);
+                const response = yield this.axios.get(`${path}/${currencyCode}/history`, { params });
                 return response.data;
             }
             catch (error) {

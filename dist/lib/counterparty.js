@@ -18,7 +18,7 @@ class Counterparty {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axios.post(`${path}/blacklist/${counterpartyID}`, {
-                    blacklist: status
+                    blacklist: status,
                 });
                 return response.data;
             }

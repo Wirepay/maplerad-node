@@ -25,16 +25,5 @@ class Collections {
             }
         });
     }
-    DirectDebit(payload) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield this.axios.post(`${path}/direct-debit`, payload);
-                return response.data;
-            }
-            catch (error) {
-                return error;
-            }
-        });
-    }
 }
 exports.default = Collections;

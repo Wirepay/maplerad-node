@@ -14,10 +14,43 @@ class Customers {
     constructor(axios) {
         this.axios = axios;
     }
+    FullEnrollCustomer(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.post(`${path}/enroll`, payload);
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
     CreateCustomer(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.post(`${path}`);
+                const response = yield this.axios.post(`${path}`, payload);
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    UpgradeCustomerTier1(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.patch(`${path}/upgrade/tier1`, payload);
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    UpgradeCustomerTier2(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.patch(`${path}/upgrade/tier2`, payload);
                 return response.data;
             }
             catch (error) {
@@ -69,11 +102,47 @@ class Customers {
             }
         });
     }
+    GetCustomerVirtualAccounts(customerID) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.get(`${path}/${customerID}/virtual-account`);
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    CustomerCardEnrollment(customerID, brand) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.patch(`${path}/card-enroll`, {
+                    customer_id: customerID,
+                    brand,
+                });
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
+    UpdateCustomer(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.patch(`${path}/update`, payload);
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
     SetCustomerBlacklistActive(customerID, status) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield this.axios.post(`${path}/${customerID}/active`, {
-                    blacklist: status
+                    blacklist: status,
                 });
                 return response.data;
             }

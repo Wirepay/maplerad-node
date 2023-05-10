@@ -9,39 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = "/transactions";
-class Transactions {
+const path = "/identity";
+class Identity {
     constructor(axios) {
         this.axios = axios;
     }
-    GetAllTransactions() {
+    VerifyIdentity(bvn) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield this.axios.get(path);
-                return response.data;
-            }
-            catch (error) {
-                return error;
-            }
-        });
-    }
-    // The transaction ID or Reference is the parameter for this method
-    GetTransaction(transactionId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield this.axios.get(`${path}/${transactionId}`);
-                return response.data;
-            }
-            catch (error) {
-                return error;
-            }
-        });
-    }
-    // The transaction ID or Reference is the parameter for this method
-    VerifyCollectionTransaction(transactionId) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield this.axios.get(`${path}/verify/${transactionId}`);
+                const response = yield this.axios.post(`${path}`, {
+                    bvn,
+                });
                 return response.data;
             }
             catch (error) {
@@ -50,4 +28,4 @@ class Transactions {
         });
     }
 }
-exports.default = Transactions;
+exports.default = Identity;

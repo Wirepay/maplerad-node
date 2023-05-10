@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const issuing_1 = __importDefault(require("./lib/issuing"));
+const identity_1 = __importDefault(require("./lib/identity"));
 const transfer_1 = __importDefault(require("./lib/transfer"));
 const bills_1 = __importDefault(require("./lib/bills"));
 const fx_1 = __importDefault(require("./lib/fx"));
@@ -25,15 +26,16 @@ class Maplerad {
         const axios = axios_1.default.create({
             baseURL: environment.toLowerCase() === "live" ? live : sandbox,
             headers: {
-                Authorization: `Bearer ${(this.secretKey)}`,
-                'Content-Type': 'application/json'
+                Authorization: `Bearer ${this.secretKey}`,
+                "Content-Type": "application/json",
             },
         });
-        axios.interceptors.request.use(request => {
-            console.log('Starting Request', JSON.stringify(request, null, 2));
+        axios.interceptors.request.use((request) => {
+            console.log("Starting Request", JSON.stringify(request, null, 2));
             return request;
         });
         this.Issuing = new issuing_1.default(axios);
+        this.Identity = new identity_1.default(axios);
         this.Transfers = new transfer_1.default(axios);
         this.Bills = new bills_1.default(axios);
         this.Fx = new fx_1.default(axios);

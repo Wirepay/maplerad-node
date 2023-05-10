@@ -24,6 +24,17 @@ class Misc {
             }
         });
     }
+    GetCountries() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield this.axios.get("/countries");
+                return response.data;
+            }
+            catch (error) {
+                return error;
+            }
+        });
+    }
     CreditTestWallet(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
