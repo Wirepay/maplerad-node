@@ -1,32 +1,32 @@
 {
-	"name": "maplerad-node",
-	"version": "0.0.1",
-	"description": "Official Nodejs library for the Maplerad API",
-	"prepublish": "tsc",
-	"main": "client.ts",
-	"scripts": {
-		"build": "npx tsc",
-		"dev": "ts-node client.ts"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/wirepay/maplerad-node.git"
-	},
-	"homepage": "https://github.com/wirepay/maplerad-node",
-	"keywords": [
-		"sdk",
-		"banking",
-		"payments",
-		"fintech"
-	],
-	"author": "Christian Ndu",
-	"license": "ISC",
-	"dependencies": {
-		"axios": "^0.27.2"
-	},
-	"devDependencies": {
-		"@types/node": "^17.0.38",
-		"ts-node": "^10.8.2",
-		"typescript": "^4.7.2"
-	}
+    "name": "maplerad-node",
+    "version": "1.0.1",
+    "description": "Official Nodejs library for the Maplerad API",
+    "prepublish": "tsc",
+    "main": "client.ts",
+    "scripts": {
+        "build": "npx tsc",
+        "dev": "ts-node client.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wirepay/maplerad-node.git"
+    },
+    "homepage": "https://github.com/wirepay/maplerad-node",
+    "keywords": [
+        "sdk",
+        "banking",
+        "payments",
+        "fintech"
+    ],
+    "author": "Christian Ndu",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.27.2"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.38",
+        "ts-node": "^10.8.2",
+        "typescript": "^4.7.2"
+    }
 }
