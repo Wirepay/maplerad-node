@@ -1,45 +1,49 @@
-import {AxiosInstance, AxiosResponse} from "axios";
+import { AxiosInstance, AxiosResponse } from "axios";
+import { CurrencyType, QueryParams } from "../utils";
 
-const path = "wallets"
+const path = "/wallets";
 
 export default class Wallets {
     private axios: AxiosInstance;
 
     constructor(axios: AxiosInstance) {
-        this.axios = axios
+        this.axios = axios;
     }
 
-    public async GetWallets():Promise<AxiosResponse | any>{
-        try{
-            const response = await this.axios.get(path)
-            return response.data
+    public async GetWallets(): Promise<AxiosResponse | any> {
+        try {
+            const response = await this.axios.get(path);
+            return response.data;
+        } catch (error) {
+            return error;
+        }
+    }
 
-        }catch (error){
-            return error
+    public async GetWalletsHistory(
+        params?: QueryParams
+    ): Promise<AxiosResponse | any> {
+        try {
+            const response = await this.axios.get(`${path}/history`, {
+                params,
+            });
+            return response.data;
+        } catch (error) {
+            return error;
         }
     }
-    public async GetWalletByCurrency(currencyCode: string):Promise<AxiosResponse | any>{
-        try{
-            const response = await this.axios.get(`${path}/${currencyCode}`)
-            return response.data
-        }catch (error){
-            return error
-        }
-    }
-    public async GetWalletsHistory():Promise<AxiosResponse | any>{
-        try{
-            const response = await this.axios.get(`${path}/history`)
-            return response.data
-        }catch (error){
-            return error
-        }
-    }
-    public async GetWalletsHistoryByCurrency(currencyCode: string):Promise<AxiosResponse | any>{
-        try{
-            const response = await this.axios.get(`${path}/${currencyCode}/history`)
-            return response.data
-        }catch (error){
-            return error
+
+    public async GetWalletsHistoryByCurrency(
+        currencyCode: CurrencyType,
+        params?: QueryParams
+    ): Promise<AxiosResponse | any> {
+        try {
+            const response = await this.axios.get(
+                `${path}/${currencyCode}/history`,
+                { params }
+            );
+            return response.data;
+        } catch (error) {
+            return error;
         }
     }
 }

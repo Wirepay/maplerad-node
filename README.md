@@ -3,13 +3,14 @@
 
 The library follows an object-oriented approach and methods are grouped under categories.
 
-There are currently eleven (11) base categories namely:
+There are currently eleven (12) base categories namely:
 * Customer
 * Collections
 * Transfer
 * Bills
 * Wallets
 * Issuing
+* Identity
 * Transactions
 * Counterparty
 * Forex
@@ -66,7 +67,7 @@ You are advised to use this when you have fully tested your integrations and are
 ## Get all Customers
 
 ```js
-    // Get a customer
+    // Get all customers
 async function getAllCustomers(){
     try{
         const customers = await client.Customers.GetAllCustomers()
