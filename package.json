@@ -1,32 +1,50 @@
 {
-    "name": "maplerad-node",
-    "version": "1.1.0",
-    "description": "Official Nodejs library for the Maplerad API",
-    "prepublish": "tsc",
-    "main": "client.ts",
-    "scripts": {
-        "build": "npx tsc",
-        "dev": "ts-node client.ts"
+  "name": "maplerad-node",
+  "version": "1.1.0",
+  "description": "Official Nodejs library for the Maplerad API",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js"
     },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/wirepay/maplerad-node.git"
-    },
-    "homepage": "https://github.com/wirepay/maplerad-node",
-    "keywords": [
-        "sdk",
-        "banking",
-        "payments",
-        "fintech"
-    ],
-    "author": "Christian Ndu",
-    "license": "ISC",
-    "dependencies": {
-        "axios": "^0.27.2"
-    },
-    "devDependencies": {
-        "@types/node": "^17.0.38",
-        "ts-node": "^10.8.2",
-        "typescript": "^4.7.2"
-    }
+    "./*": "./*"
+  },
+  "main": "./dist/client.js",
+  "module": "./dist/client.js",
+  "types": "./dist/client.d.ts",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc -p .",
+    "dev": "ts-node ./src/client.ts",
+    "format": "prettier --write --cache \"**/*.{ts,js,json}\"",
+    "format:check": "prettier --check --cache \"**/*.{ts,js,json}\"",
+    "prepublishOnly": "yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wirepay/maplerad-node.git"
+  },
+  "homepage": "https://github.com/wirepay/maplerad-node",
+  "keywords": [
+    "sdk",
+    "banking",
+    "payments",
+    "fintech"
+  ],
+  "author": "Christian Ndu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
 }
