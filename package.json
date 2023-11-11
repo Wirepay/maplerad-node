@@ -22,7 +22,7 @@
     "author": "Christian Ndu",
     "license": "ISC",
     "dependencies": {
-        "axios": "^0.27.2"
+        "axios": "^1.6.0"
     },
     "devDependencies": {
         "@types/node": "^17.0.38",
